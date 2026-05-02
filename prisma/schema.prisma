@@ -1,0 +1,114 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Reservation {
+  id                     String   @id @default(cuid())
+  reference              String   @unique
+  editionSlug            String
+  fullName               String
+  email                  String
+  phone                  String
+  country                String
+  existingClient         Boolean  @default(false)
+  existingModelReference String?
+  dealerRelationship     String?
+  preferredContact       String
+  notes                  String?
+  createdAt              DateTime @default(now())
+
+  @@map("reservations")
+}
+
+model Waitlist {
+  id                     String   @id @default(cuid())
+  reference              String   @unique
+  editionSlug            String
+  fullName               String
+  email                  String
+  phone                  String
+  country                String
+  existingClient         Boolean  @default(false)
+  existingModelReference String?
+  dealerRelationship     String?
+  preferredContact       String
+  notes                  String?
+  createdAt              DateTime @default(now())
+
+  @@map("waitlist")
+}
+
+model ConciergeBooking {
+  id               String   @id @default(cuid())
+  reference        String   @unique
+  fullName         String
+  email            String
+  phone            String
+  preferredLocation String
+  preferredDate    String
+  preferredWindow  String
+  modelsOfInterest String[]
+  guests           Int
+  specialRequests  String?
+  createdAt        DateTime @default(now())
+
+  @@map("concierge_bookings")
+}
+
+model OwnerRegistration {
+  id             String   @id @default(cuid())
+  ownerId        String   @unique
+  serial         String
+  fullName       String
+  email          String
+  phone          String
+  country        String
+  purchaseDate   String
+  dealerLocation String
+  receiptName    String
+  createdAt      DateTime @default(now())
+
+  @@map("owner_registrations")
+}
+
+model Serial {
+  id             String   @id @default(cuid())
+  serial         String   @unique
+  modelName      String
+  reference      String
+  productionDate String
+  registeredAt   DateTime?
+
+  @@map("serials")
+}
+
+model Edition {
+  id              String   @id @default(cuid())
+  slug            String   @unique
+  name            String
+  productionLimit Int
+  status          String
+  reservationOpen DateTime
+  modelSlug       String
+  description     String
+
+  @@map("editions")
+}
+
+model Model {
+  id             String @id @default(cuid())
+  slug           String @unique
+  name           String
+  reference      String @unique
+  caseMaterial   String
+  movementType   String
+  complication   String
+  priceChf       Int
+
+  @@map("models")
+}
