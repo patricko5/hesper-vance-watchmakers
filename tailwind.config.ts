@@ -9,9 +9,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        graphite: "var(--color-graphite)",
-        surface: "var(--color-surface)",
-        bone: "var(--color-bone)",
+        ink: "var(--color-ink)",
+        offwhite: "var(--color-offwhite)",
+        teal: "var(--color-teal)",
+        softblue: "var(--color-softblue)",
+        gray: "var(--color-gray)",
+        graphite: "var(--color-ink)",
+        surface: "var(--color-offwhite)",
+        bone: "var(--color-offwhite)",
         muted: "var(--color-muted)",
         brass: "var(--color-brass)",
         steel: "var(--color-steel)",
