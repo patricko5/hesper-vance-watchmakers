@@ -24,17 +24,10 @@ const config: Config = {
       },
       fontFamily: {
         display: ["var(--font-display)", "serif"],
-        sans: ["var(--font-body)", "sans-serif"],
-        mono: ["var(--font-mono)", "monospace"]
-      },
-      transitionTimingFunction: {
-        horology: "cubic-bezier(0.65, 0, 0.35, 1)"
+        sans: ["var(--font-body)", "sans-serif"]
       },
       boxShadow: {
         brass: "0 0 0 1px rgba(176, 141, 78, 0.32), 0 24px 80px rgba(0, 0, 0, 0.35)"
-      },
-      maxWidth: {
-        atelier: "1440px"
       }
     }
   },
