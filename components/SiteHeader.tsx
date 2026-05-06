@@ -10,7 +10,8 @@ const links = [
   { href: "/", label: "Home" },
   { href: "/menu", label: "Menu" },
   { href: "/bar-menu", label: "Bar Menu" },
-  { href: "/events", label: "Events" }
+  { href: "/events", label: "Events" },
+  { href: "/contact", label: "Contact Us" }
 ];
 
 export function SiteHeader() {
@@ -54,19 +55,24 @@ export function SiteHeader() {
           })}
         </div>
 
-        <a href="tel:+16046855555" className="button-primary hidden md:inline-flex">
+        <a href="tel:+16046855555" className="button-primary desktop-call-button">
           Call Us
         </a>
 
-        <button
-          type="button"
-          className="icon-button md:hidden"
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-          onClick={() => setOpen((value) => !value)}
-        >
-          {open ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
-        </button>
+        <div className="mobile-header-actions">
+          <a href="tel:+16046855555" className="button-primary mobile-call-button" onClick={() => setOpen(false)}>
+            Call Us
+          </a>
+          <button
+            type="button"
+            className="icon-button"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            onClick={() => setOpen((value) => !value)}
+          >
+            {open ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
+          </button>
+        </div>
       </nav>
 
       <div className={open ? "mobile-drawer mobile-drawer-open" : "mobile-drawer"}>

@@ -2,20 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Design Tokens (UI/UX Pro Max — Tequila Lounge) ── */
 :root {
-  --color-ink: #ece5d0;
-  --color-offwhite: #141414;
-  --color-teal: #b8935a;
-  --color-softblue: #1d2229;
-  --color-gray: rgba(236, 229, 208, 0.62);
-  --color-white: #ffffff;
-  --color-bg-top: #000000;
-  --color-bg-bottom: #1f1f1f;
-  --color-border: rgba(255, 255, 255, 0.08);
-  --font-display: "Fraunces";
-  --font-body: "Geist";
+  /* Primary palette */
+  --color-ink: #FAFAF9;
+  --color-offwhite: #0A0A0A;
+  --color-teal: #10B981; /* Agave Green */
+  --color-softblue: #0F172A; /* Dark slate */
+  --color-gray: rgba(250, 250, 249, 0.62);
+  --color-white: #FAFAF9;
+  --color-muted: #94A3B8;
+  --color-brass: #D4AF37; /* Warm Gold */
+  --color-steel: #334155;
+  --color-ruby: #10B981;
+
+  /* Surfaces */
+  --color-bg-top: #2A2A2E; /* Gray-ish top */
+  --color-bg-bottom: #050505; /* Vanishing dark bottom */
+  --color-border: rgba(16, 185, 129, 0.15);
+  --color-border-subtle: rgba(250, 250, 249, 0.06);
+  --color-surface-glass: rgba(250, 250, 249, 0.03);
+  --color-surface-glass-hover: rgba(250, 250, 249, 0.06);
+
+  /* Typography */
+  --font-display: "Karla", sans-serif;
+  --font-body: "Karla", sans-serif;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.12);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.35);
+  --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.45);
+  --shadow-gold: 0 0 20px rgba(16, 185, 129, 0.2);
 }
 
+/* ── Base ── */
 * {
   box-sizing: border-box;
 }
@@ -28,18 +49,16 @@ html {
 
 body {
   min-height: 100vh;
-  background: linear-gradient(
-    180deg,
-    var(--color-bg-top) 0%,
-    var(--color-bg-bottom) 100%
-  );
+  background: linear-gradient(180deg,
+      var(--color-bg-top) 0%,
+      var(--color-bg-bottom) 100%);
   background-attachment: fixed;
   color: var(--color-ink);
-  font-family: var(--font-body), sans-serif;
+  font-family: var(--font-body);
 }
 
 ::selection {
-  color: var(--color-white);
+  color: var(--color-bg-top);
   background: var(--color-teal);
 }
 
@@ -50,6 +69,7 @@ body {
 
 a,
 button {
+  cursor: pointer;
   transition:
     color 200ms ease,
     border-color 200ms ease,
@@ -59,13 +79,13 @@ button {
     transform 200ms ease;
 }
 
+/* ── Header ── */
 .site-header {
   position: fixed;
   inset-inline: 0;
   top: 0;
   z-index: 50;
   background: transparent;
-  border-bottom: 1px solid transparent;
   transition:
     background-color 350ms ease,
     border-color 350ms ease,
@@ -73,12 +93,13 @@ button {
 }
 
 .site-header-scrolled {
-  background: rgba(26, 26, 26, 0.85);
-  border-bottom-color: rgba(255, 255, 255, 0.08);
+  background: rgba(5, 5, 5, 0.88);
+  border-bottom-color: var(--color-border);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
 }
 
+/* ── Layout ── */
 .site-shell {
   width: min(100% - 40px, 1180px);
   margin-inline: auto;
@@ -88,6 +109,7 @@ button {
   padding-block: 96px;
 }
 
+/* ── Logo ── */
 .logo-lockup {
   display: inline-flex;
   min-height: 44px;
@@ -96,7 +118,7 @@ button {
 }
 
 .logo-image {
-  height: 40px;
+  height: 50px;
   width: auto;
   filter: brightness(0) invert(1);
 }
@@ -107,42 +129,79 @@ button {
   width: 42px;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--color-white);
-  font-family: var(--font-body), sans-serif;
+  border: 1px solid rgba(250, 250, 249, 0.35);
+  background: var(--color-surface-glass);
+  color: var(--color-ink);
+  font-family: var(--font-body);
   font-size: 13px;
   font-weight: 800;
   letter-spacing: 0;
 }
 
+/* ── Navigation ── */
 .nav-link {
   min-height: 44px;
   display: inline-flex;
   align-items: center;
   border-bottom: 2px solid transparent;
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 14px;
+  color: rgba(250, 250, 249, 0.72);
+  font-size: 18px;
   font-weight: 700;
+  letter-spacing: 0.02em;
 }
 
 .nav-link:hover,
 .nav-link-active {
   border-color: var(--color-teal);
-  color: var(--color-white);
+  color: var(--color-ink);
 }
 
+/* ── Icon Button ── */
 .icon-button {
   display: inline-flex;
   min-height: 44px;
   min-width: 44px;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--color-white);
+  border: 1px solid rgba(250, 250, 249, 0.2);
+  border-radius: 6px;
+  background: var(--color-surface-glass);
+  color: var(--color-ink);
 }
 
+.icon-button:hover {
+  background: var(--color-surface-glass-hover);
+  border-color: var(--color-teal);
+}
+
+.mobile-header-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.button-primary.desktop-call-button {
+  display: none;
+}
+
+.button-primary.mobile-call-button {
+  min-height: 44px;
+  padding-inline: 14px;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+  .button-primary.desktop-call-button {
+    display: inline-flex;
+  }
+
+  .mobile-header-actions {
+    display: none;
+  }
+}
+
+/* ── Mobile Drawer ── */
 .mobile-drawer {
   position: fixed;
   inset: 80px 0 auto auto;
@@ -150,10 +209,10 @@ button {
   min-height: calc(100vh - 80px);
   padding: 24px;
   border-left: 1px solid var(--color-border);
-  background: rgba(10, 10, 10, 0.94);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: -24px 0 60px rgba(0, 0, 0, 0.5);
+  background: rgba(5, 5, 5, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: -24px 0 60px rgba(0, 0, 0, 0.6);
   transform: translateX(105%);
   transition: transform 250ms ease;
 }
@@ -166,12 +225,17 @@ button {
   display: flex;
   min-height: 52px;
   align-items: center;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border-subtle);
   color: var(--color-ink);
   font-size: 18px;
   font-weight: 700;
 }
 
+.mobile-nav-link:hover {
+  color: var(--color-teal);
+}
+
+/* ── Buttons ── */
 .button-primary,
 .button-secondary {
   display: inline-flex;
@@ -179,96 +243,134 @@ button {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  border-radius: 4px;
-  padding: 0 18px;
-  font-size: 14px;
-  font-weight: 800;
+  border-radius: 6px;
+  padding: 0 22px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
 }
 
 .button-primary {
   border: 1px solid var(--color-teal);
   background: var(--color-teal);
-  color: var(--color-white);
+  color: #FAFAF9;
 }
 
 .button-primary:hover {
-  background: #9c7a45;
+  background: #059669;
+  box-shadow: var(--shadow-gold);
 }
 
 .button-secondary {
-  border: 1px solid rgba(255, 255, 255, 0.72);
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--color-white);
+  border: 1px solid rgba(250, 250, 249, 0.5);
+  background: var(--color-surface-glass);
+  color: var(--color-ink);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .button-secondary:hover {
-  background: var(--color-white);
-  color: var(--color-ink);
+  background: rgba(250, 250, 249, 0.12);
+  border-color: var(--color-teal);
 }
 
-.button-light {
-  border-color: rgba(42, 123, 155, 0.3);
-  background: var(--color-white);
-  color: var(--color-teal);
-}
-
+/* ── Hero Animations ── */
 .hero-title {
-  animation: fade-up 650ms ease both;
+  animation: fade-up 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .hero-subtitle {
-  animation: fade-up 650ms ease 150ms both;
+  animation: fade-up 700ms cubic-bezier(0.22, 1, 0.36, 1) 150ms both;
 }
 
 .hero-actions {
-  animation: fade-up 650ms ease 300ms both;
+  animation: fade-up 700ms cubic-bezier(0.22, 1, 0.36, 1) 300ms both;
 }
 
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Image Tiles (Homepage) ── */
 .image-tile {
   position: relative;
   min-height: 280px;
   overflow: hidden;
-  border-radius: 6px;
+  border-radius: 8px;
   background-position: center;
   background-size: cover;
-  box-shadow: 0 18px 42px rgba(26, 26, 26, 0.14);
+  box-shadow: var(--shadow-lg);
+  cursor: pointer;
+  transition: box-shadow 300ms ease, transform 300ms ease;
 }
 
 .image-tile::before {
   position: absolute;
   inset: 0;
   content: "";
-  background: linear-gradient(180deg, transparent 32%, rgba(26, 26, 26, 0.78));
+  background: linear-gradient(180deg, transparent 30%, rgba(5, 5, 5, 0.82));
 }
 
 .image-tile::after {
   position: absolute;
   inset: 0;
   content: "";
-  background: rgba(42, 123, 155, 0);
-  transition: background 200ms ease;
+  background: rgba(16, 185, 129, 0);
+  transition: background 300ms ease;
 }
 
 .image-tile:hover {
-  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl), var(--shadow-gold);
+  transform: translateY(-3px);
 }
 
 .image-tile:hover::after {
-  background: rgba(42, 123, 155, 0.28);
+  background: rgba(16, 185, 129, 0.12);
 }
 
+/* ── Glass Card (new shared style) ── */
+.glass-card {
+  /* border: 1px solid var(--color-border); */
+  border-radius: 10px;
+  background: var(--color-surface-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-md);
+  transition: border-color 200ms ease, box-shadow 200ms ease, background 200ms ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(16, 185, 129, 0.25);
+  background: var(--color-surface-glass-hover);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ── Food Cards (Menu) ── */
 .food-card {
   overflow: hidden;
-  border: 1px solid var(--color-border);
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.03);
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.4);
+  /* border: 1px solid var(--color-border); */
+  border-radius: 8px;
+  background: var(--color-surface-glass);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  transition: transform 300ms ease, box-shadow 300ms ease, border-color 300ms ease;
 }
 
 .food-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.55);
-  border-color: rgba(184, 147, 90, 0.35);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-xl);
+  border-color: rgba(16, 185, 129, 0.3);
 }
 
 .food-card-image {
@@ -284,16 +386,32 @@ button {
   gap: 24px;
 }
 
+/* ── Tag Labels ── */
 .tag-label {
   border-radius: 999px;
-  border: 1px solid rgba(184, 147, 90, 0.32);
-  background: rgba(184, 147, 90, 0.12);
-  padding: 4px 9px;
-  color: var(--color-teal);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  background: rgba(212, 175, 55, 0.15);
+  padding: 4px 10px;
+  color: var(--color-brass);
   font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+/* ── Add-on badge ── */
+.addon-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 4px;
+  background: rgba(212, 175, 55, 0.15);
+  padding: 3px 8px;
+  color: var(--color-brass);
+  font-size: 11px;
   font-weight: 700;
 }
 
+/* ── Text Button ── */
 .text-button {
   display: inline-flex;
   min-height: 44px;
@@ -301,59 +419,50 @@ button {
   gap: 8px;
   color: var(--color-teal);
   font-weight: 800;
+  cursor: pointer;
 }
 
-@keyframes fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.text-button:hover {
+  color: #059669;
 }
 
+/* ── Footer ── */
 .site-footer {
-  border-top: 1px solid var(--color-border);
+  border-top: 1px solid var(--color-border-subtle);
   background: transparent;
   padding-block: 48px;
 }
 
 .partners-heading {
   text-align: center;
-  font-family: var(--font-body), sans-serif;
+  font-family: var(--font-body);
   font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--color-gray);
+  color: var(--color-muted);
   margin-bottom: 28px;
 }
 
 .partners-marquee {
   overflow: hidden;
   width: 100%;
-  mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 10%,
-    black 90%,
-    transparent
-  );
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 10%,
-    black 90%,
-    transparent
-  );
+  mask-image: linear-gradient(to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent);
+  -webkit-mask-image: linear-gradient(to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent);
 }
 
 .partners-track {
   display: flex;
   align-items: center;
-  gap: 64px;
+  gap: 80px;
   width: max-content;
   animation: partners-scroll 30s linear infinite;
 }
@@ -363,38 +472,54 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 80px;
+  height: 60px;
 }
 
 .partners-logo {
-  height: auto;
-  max-height: 64px;
+  height: 40px;
   width: auto;
   object-fit: contain;
-  filter: brightness(0) invert(1);
-  opacity: 0.55;
-  transition: opacity 200ms ease;
+  opacity: 0.9;
+  transition: opacity 200ms ease, transform 200ms ease;
 }
 
 .partners-logo:hover {
-  opacity: 0.95;
+  opacity: 1;
+  transform: scale(1.05);
 }
 
 @keyframes partners-scroll {
   from {
     transform: translateX(0);
   }
+
   to {
     transform: translateX(calc(-100% / 3));
   }
 }
 
+/* ── Reduced Motion ── */
 @media (prefers-reduced-motion: reduce) {
   .partners-track {
     animation: none;
   }
+
+  .hero-title,
+  .hero-subtitle,
+  .hero-actions {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .food-card,
+  .image-tile,
+  .glass-card {
+    transition: none;
+  }
 }
 
+/* ── Responsive ── */
 @media (max-width: 1024px) {
   .menu-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
